@@ -2,10 +2,45 @@
 <html>
     <title>Shuttle</title>
     <head>
-        <link rel="stylesheet" href="styles/styles.css"/>
+        <link rel="stylesheet" href="./styles/styles.css"/>
         <script async src="./javascript/index.js"></script>
     </head>
     <body>
-        <input type="file" id="file-selector" accept=".csv" multiple>
+        <div class="wrapper">
+            <div class="container">
+                <div id="content">
+                    <label for="file-selector" id="file-selector-label">
+                        Data Import
+                    </label>
+                    <input type="file" id="file-selector" accept=".csv" multiple>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <svg width="120" height="128">
+                <rect x="55" y="0" width="10" height="10" style="fill:#424242;stroke:6137A3;stroke-width:0.3;"/>
+                <rect x="55" y="10" width="10" height="10" style="fill:#6137A3;stroke:6137A3;stroke-width:0.3;"/>
+                <rect x="48" y="20" width="25" height="10" style="fill:#424242;stroke:6137A3;stroke-width:0.3;"/>
+                <rect x="48" y="30" width="25" height="10" style="fill:#F1F1F2;stroke:F1F1F2;stroke-width:0.3;"/>
+                <rect x="38" y="40" width="45" height="10" style="fill:#F1F1F2;stroke:F1F1F2;stroke-width:0.3;"/>
+                <rect x="48" y="40" width="25" height="10" style="fill:#424242;stroke:6137A3;stroke-width:0.3;"/>
+                <rect x="28" y="50" width="65" height="10" style="fill:#F1F1F2;stroke:F1F1F2;stroke-width:0.3;"/>
+                <rect x="18" y="60" width="85" height="10" style="fill:#F1F1F2;stroke:F1F1F2;stroke-width:0.3;"/>
+                <g>
+                    <rect x="18" y="70" width="85" height="10" style="fill:#F1F1F2;stroke:F1F1F2;stroke-width:0.3;"/>
+                    <text x="31" y="70" font-family="Arial black" font-size="15" fill="#000000">shuttle</text>
+                </g>
+                <rect x="28" y="80" width="65" height="10" style="fill:#F1F1F2;stroke:F1F1F2;stroke-width:0.3;"/>
+                <rect x="28" y="90" width="65" height="10" style="fill:#F1F1F2;stroke:F1F1F2;stroke-width:0.3;"/>
+                <rect x="43" y="100" width="35" height="10" style="fill:#F1F1F2;stroke:F1F1F2;stroke-width:0.3;"/>
+                <rect x="18" y="75" width="20" height="50" style="fill:#424242;stroke:424242;stroke-width:0.3;"/>
+                <rect x="83" y="75" width="20" height="50" style="fill:#424242;stroke:424242;stroke-width:0.3;"/>
+                <rect x="43" y="105" width="10" height="10" style="fill:#ED6F33;stroke:ED6F33;stroke-width:0.3;"/>
+                <rect x="53" y="110" width="10" height="10" style="fill:#EDCD04;stroke:EDCD04;stroke-width:0.3;"/>
+                <rect x="63" y="115" width="10" height="10" style="fill:#ED6F33;stroke:ED6F33;stroke-width:0.3;"/>
+                <rect x="68" y="105" width="10" height="10" style="fill:#EDCD04;stroke:EDCD04;stroke-width:0.3;"/>
+                <rect x="48" y="120" width="10" height="10" style="fill:#ED6F33;stroke:EDCD04;stroke-width:0.3;"/>
+            </svg>
+        </div>
     </body>
 </html>
