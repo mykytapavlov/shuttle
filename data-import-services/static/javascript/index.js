@@ -49,15 +49,15 @@ class FileManager {
 }
 
 class Sender {
-    constructor(jsonObjects, limit) {
-        this.jsonObjects = jsonObjects;
-        this.limit = limit;
+    constructor(timeout) {
+        this.timeout = timeout;
     }
 
-    send() {
+    sendPeriodically(jsonObjects, limit) {
         let data = {events: []};
-        for (let i = 0; i < this.limit; i++) {
-            const randomJsonObject = this.jsonObjects[Math.floor(Math.random() * this.jsonObjects.length)];
+
+        for (let i = 0; i < limit; i++) {
+            const randomJsonObject = jsonObjects[Math.floor(Math.random() * jsonObjects.length)];
             data.events.push(randomJsonObject);
         }
 
@@ -67,7 +67,9 @@ class Sender {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
-        }).then(r => console.log(r));
+        }).then(r => console.log(r.body));
+
+        setTimeout(this.send, this.timeout);
     }
 }
 
@@ -77,5 +79,8 @@ class Sender {
         const files = event.target.files;
         const result = FileManager.readFilesCSV(files)
         console.log('Files: ', result)
+
+        const sender = new Sender(10000);
+        sender.sendPeriodically(files, 20);
     });
 })();
