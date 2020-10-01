@@ -69,7 +69,7 @@ class Sender {
             body: JSON.stringify(data)
         }).then(r => console.log(r.body));
 
-        setTimeout(this.send, this.timeout);
+        setTimeout(this.sendPeriodically, this.timeout);
     }
 }
 
