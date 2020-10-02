@@ -49,27 +49,38 @@ class FileManager {
 }
 
 class Sender {
-    constructor(timeout) {
-        this.timeout = timeout;
+    static send(filesDict, limit) {
+        let jsonObjects = [];
+        Object.entries(filesDict).forEach(file => {
+            jsonObjects = jsonObjects.concat(file[1]);
+        })
+
+        let chunkedJsonObjects = this.chunk(jsonObjects, limit);
+
+        chunkedJsonObjects.forEach(chunk => {
+            let data = {events: chunk};
+            fetch("/events", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }).then(r => console.log(r.body));
+        });
     }
 
-    sendPeriodically(jsonObjects, limit) {
-        let data = {events: []};
+    /*
+    Splits array into chunks of given size.
+    Returns array of chunks (arrays).
+     */
+    static chunk(array, chunkSize) {
+        if (chunkSize < 1) throw new Error('Size must be positive')
 
-        for (let i = 0; i < limit; i++) {
-            const randomJsonObject = jsonObjects[Math.floor(Math.random() * jsonObjects.length)];
-            data.events.push(randomJsonObject);
+        const chunks = [];
+        for (let i = 0; i < array.length; i += chunkSize) {
+            chunks.push(array.slice(i, i + chunkSize));
         }
-
-        fetch("/events", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        }).then(r => console.log(r.body));
-
-        setTimeout(this.sendPeriodically, this.timeout);
+        return chunks;
     }
 }
 
@@ -79,8 +90,6 @@ class Sender {
         const files = event.target.files;
         const result = FileManager.readFilesCSV(files)
         console.log('Files: ', result)
-
-        const sender = new Sender(10000);
-        sender.sendPeriodically(files, 20);
+        Sender.send(result, 20);
     });
 })();
