@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+
+  event-producer:
+    build: data-import-services/event-producer/
+    ports:
+      - "80:80"
